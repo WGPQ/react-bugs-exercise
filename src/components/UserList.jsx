@@ -12,7 +12,11 @@ export default function UserList({ value: filters, onChange }) {
     runSearch()
   }, [filters])
 
-  const setQuery = (q) => onChange({ ...filters, query: String(q ?? ''), page: 1 })
+  const setQuery = (q) => {
+    filters.query = String(q ?? '')
+    filters.page = 1
+    onChange(filters)
+  }
   const setPageSize = (n) => onChange({ ...filters, pageSize: Number(n), page: 1 })
   const goTo = (p) => p > 0 && onChange({ ...filters, page: p })
 
